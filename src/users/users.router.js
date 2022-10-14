@@ -6,18 +6,20 @@ const userServices = require('./users.services')
 
 router.get('/', userServices.getAllUsers)
 
-//todo: El reisterUser irá en la ruta /auth/register
+//TODO el registerUser ira en la ruta /auth/register
 
-//? rutas dinámicas por ID /users/:id
+//! router.route('/').get( userServices.getAllUsers)
+
+//? rutas dinamicas por ID /users/:id
 
 //! router.get('/:id')
-//! router.patch'/:id')
+//! router.patch('/:id')
 //! router.put('/:id')
 //! router.delete('/:id')
 
-router.route('/.id')
+router.route('/:id')
     .get(userServices.getUserById)
     .patch(userServices.patchUser)
     .delete(userServices.deleteUser)
 
-    module.exports = router
+module.exports = router
