@@ -6,7 +6,7 @@
 
 const router = require('express').Router()
 const authServices = require('./auth.services')
-const {registerUser} = require('../users/users.services')
+const { registerUser } = require('../users/users.services')
 
 //? /api/v1/auth
 

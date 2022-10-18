@@ -93,11 +93,60 @@ const deleteUser = (req, res) => {
     });
 };
 
+//? My user services
+
+const getMyUser = (req, res) => {
+  const id = req.user.id //? res.user contiene la informacion del token desencriptado
+  
+  usersControllers.getUserById(id)
+    .then(data => {
+        res.status(200).json(data)      
+    })
+    .catch(err => {
+      res.status(400).json({message: err.message})
+    })
+  
+  }
+
+  const patchMyUser = (req, res) => {
+    const id = req.user.id 
+    const data = req.body 
+    usersControllers.updateUser(id, data)
+      .then(data => {
+        res.status(200).json({
+          message: 'User with ID: ${id}, edited successfully',
+          data: data
+        })
+      })
+      .catch(err => {
+        res.status(400).json({ message: err.message})
+      })
+  }
+
+  const deleteMyUser = (req, res) => {
+    const id = req.user.id 
+    usersControllers
+    .deleteMyUser(id)
+    .then((data) => {
+      if (data) {
+        res.status(204).json();
+      } else {
+        res.status(404).json({ message: "Invalid ID" });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err.message });
+    });
+
+  }
 
 module.exports = {
     getAllUsers,
     getUserById,
     patchUser,
     registerUser,
-    deleteUser
+    deleteUser,
+    getMyUser,
+    patchMyUser,
+    deleteMyUser
 }

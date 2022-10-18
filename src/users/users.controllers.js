@@ -56,7 +56,7 @@ const deleteUser = async (id) => {
 //? Otro servidor contiene la Base de Datos
 
 const getUserByEmail = async(email) => {
-    //? SELECT * FROM users where email = 'sahid.kick@academlo.com'//
+    //? SELECT * FROM users where email = 'gramirezdeveloper39@gmail.com'//
     const data = await Users.findOne({
         where: {
             email: email
