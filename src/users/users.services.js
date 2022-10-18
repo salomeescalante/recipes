@@ -77,6 +77,9 @@ const patchUser = (req, res) => {
     });
 };
 
+
+//? Sugerido para usar como administradores
+
 const deleteUser = (req, res) => {
   const id = req.params.id;
   usersControllers
@@ -109,36 +112,35 @@ const getMyUser = (req, res) => {
   }
 
   const patchMyUser = (req, res) => {
-    const id = req.user.id 
-    const data = req.body 
-    usersControllers.updateUser(id, data)
-      .then(data => {
-        res.status(200).json({
-          message: 'User with ID: ${id}, edited successfully',
-          data: data
-        })
+    const id = req.user.id;
+    const { firstName, lastName, phone, birthday, gender, country } = req.body;
+  
+    usersControllers
+      .updateUser(id, { firstName, lastName, phone, birthday, gender, country })
+      .then(() => {
+        res.status(200).json({ message: `Your user was edited succesfully!` });
       })
-      .catch(err => {
-        res.status(400).json({ message: err.message})
-      })
-  }
+      .catch((err) => {
+        res.status(400).json({ message: err.message });
+      });
+  };
+
+
+  //? Hay 2 tipos de delete:
+  //* 1. por administrador
+  //* 2. por mi mismo-usuario
 
   const deleteMyUser = (req, res) => {
-    const id = req.user.id 
-    usersControllers
-    .deleteMyUser(id)
-    .then((data) => {
-      if (data) {
-        res.status(204).json();
-      } else {
-        res.status(404).json({ message: "Invalid ID" });
-      }
-    })
-    .catch((err) => {
-      res.status(400).json({ message: err.message });
-    });
-
-  }
+    const id = req.user.id;
+  
+    usersControllers.updateUser(id, { status: "inactive" })
+        .then(() => {
+          res.status(200).json({ message: `Your user was deleted succesfully!` });
+        })
+        .catch((err) => {
+          res.status(400).json({ message: err.message });
+        });
+  };
 
 module.exports = {
     getAllUsers,
