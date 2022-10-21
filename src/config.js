@@ -11,7 +11,6 @@ const config = {
         password: process.env.DB_PASS || 'Nievelina2505',
         dbName: process.env.DB_NAME
     }
-
 }
 
 module.exports = config
