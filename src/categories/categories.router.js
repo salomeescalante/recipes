@@ -2,11 +2,16 @@ const router = require('express').Router()
 
 const categoryServices = require('./categories.services')
 
-router.route('/') //? /categories
+//? / 
+//? /:id
+
+
+router.route('/')
     .get(categoryServices.getAllCategories)
-    .post(categoryServices.postCategory)
-    
-//? /api/v1/categories/:id
-router.get('/:id', categoryServices.getCategoryById)
+    .post(categoryServices.postCategory) //TODO hacerla protegida por administrador
+
+router.route('/:id')
+    .get(categoryServices.getCategoryById)
+    .delete(categoryServices.deleteCategory) //TODO hacerla protegida por administrador
 
 module.exports = router

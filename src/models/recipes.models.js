@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize')
 
 const db = require('../utils/database')
-const Users = require('./users.models')
+const Users = require('./users_recipes.models')
+const Categories = require('./categories.models')
 
 const Recipes = db.define('recipes', {
     id: {
@@ -42,14 +43,6 @@ const Recipes = db.define('recipes', {
     userId : {
         type: DataTypes.UUID,
         allowNull: false,
-    }
-},
-    //? las FK de sequelize tienen ciertas reglas:
-    //? Debe contener la tabla a la que hace referencia en singular
-    //? Debe terminar con el subfijo Id
-    userId : {
-        type: DataTypes.UUID,
-        allowNull: false,
         field: 'user_id',
         references: {
             key: 'id',
@@ -61,8 +54,8 @@ const Recipes = db.define('recipes', {
         allowNull: false,
         field: 'category_id', 
         references: {
-            key: 'id',
-            model: '' //TODO agregar el modelo una vez creado
+            key: 'id', 
+            model: Categories //TODO agregar el modelo una vez creado
         }
     },
     origin: {
@@ -76,5 +69,13 @@ const Recipes = db.define('recipes', {
 })
 
 
-module.exports = Recip
+module.exports = Recipes
+
+
+//! procedimiento para hacer el clon en github:
+
+//*  en terminal powershell = cd + carpeta donde se vaya a crear el proyecto
+//*  git clone https//:...
+//* ejectural npm install
+//* copiar archivo .env
 

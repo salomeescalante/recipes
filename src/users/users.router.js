@@ -21,30 +21,33 @@ router.get('/', userServices.getAllUsers)
 //! router.put('/:id')
 //! router.delete('/:id')
 
-//? Ruta de informacion porpia del usuario logueado
+//? Ruta de informacion propia del usuario loggeado
 router.route('/me')
     .get(
         passport.authenticate('jwt', {session: false}),
         userServices.getMyUser)
     .patch(
         passport.authenticate('jwt', {session: false}),
-        userServices.patchMyUser)
+        userServices.patchMyUser
+    )
     .delete(
         passport.authenticate('jwt', {session: false}),
-        userServices.deleteMyUser)
+        userServices.deleteMyUser
+    )
 
-// //? /api/v1/users/:id
-
+//? /api/v1/users/:id
 router.route('/:id')
     .get(userServices.getUserById)
     .patch(
         passport.authenticate('jwt', {session: false}),
         adminValidate,
-        userServices.patchUser)
+        userServices.patchUser
+    )
     .delete(
         passport.authenticate('jwt', {session: false}),
         adminValidate,
-        userServices.deleteUser)
+        userServices.deleteUser
+    )
 
 
 module.exports = router

@@ -11,7 +11,8 @@
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false, 
+      unique: true
     }
  }, {
    //? Evita que sequelize agregue las columnas de createdAt y updatedAt
