@@ -5,7 +5,7 @@ const Instructions = require('./instructions.models')
 const RecipesIngredients = require('./recipes_ingredients.models')
 const Recipes = require('./recipes.models')
 const Types = require('./types.models')
-const UsersIngredients = require('./users_ingredients.model')
+const UsersIngredients = require('./users_ingredients.models')
 const UsersRecipes = require('./users_recipes.models')
 
 const initModels = () => {

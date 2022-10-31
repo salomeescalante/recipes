@@ -42,8 +42,7 @@ const createUser = async (data) => {
 const updateUser = async (id, data) => {
     const result = await Users.update(data, {
         where: {
-            id,
-            
+            id
         }
     })
     return result
@@ -62,7 +61,7 @@ const deleteUser = async (id) => {
 //? Otro servidor contiene la Base de Datos
 
 const getUserByEmail = async(email) => {
-    //? SELECT * FROM users where email = 'gramirezdeveloper39@gmail.com'//
+    //? SELECT * FROM users where email = 'sahid.kick@academlo.com'//
     const data = await Users.findOne({
         where: {
             email: email,

@@ -1,7 +1,7 @@
-//* Email y Contraseña del usuario
+//* Email y Contraseña del usuario 
 
 const { getUserByEmail } = require("../users/users.controllers")
-const { comparePassword } = require('../utils/crypto')
+const {comparePassword} = require('../utils/crypto')
 //? El email es unico en mi base de datos
 
 const loginUser = async (email, password) => {
@@ -13,14 +13,15 @@ const loginUser = async (email, password) => {
         const user = await getUserByEmail(email)
         //? user.password contiene la contraseña encriptada de mi base de datos
         const verifyPassword = comparePassword(password, user.password)
-        if (verifyPassword) {
+        if(verifyPassword){
             return user
-        }
+        } 
         return false
     } catch (err) {
         return false
     }
 }
+
 
 
 module.exports = {

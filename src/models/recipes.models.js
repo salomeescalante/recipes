@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 
 const db = require('../utils/database')
-const Users = require('./users_recipes.models')
+const Users = require('./users.models')
 const Categories = require('./categories.models')
 
 const Recipes = db.define('recipes', {
@@ -54,8 +54,8 @@ const Recipes = db.define('recipes', {
         allowNull: false,
         field: 'category_id', 
         references: {
-            key: 'id', 
-            model: Categories //TODO agregar el modelo una vez creado
+            key: 'id',
+            model: Categories
         }
     },
     origin: {
@@ -70,12 +70,3 @@ const Recipes = db.define('recipes', {
 
 
 module.exports = Recipes
-
-
-//! procedimiento para hacer el clon en github:
-
-//*  en terminal powershell = cd + carpeta donde se vaya a crear el proyecto
-//*  git clone https//:...
-//* ejectural npm install
-//* copiar archivo .env
-
