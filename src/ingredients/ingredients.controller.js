@@ -1,5 +1,4 @@
 const uuid = require('uuid')
-
 const Ingredients = require('../models/ingredients.models')
 const UsersIngredients = require('../models/users_ingredients.models')
 
