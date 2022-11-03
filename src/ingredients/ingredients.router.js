@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const passport = require('passport')
 const adminMiddleware = require('../middlewares/role.middleware')
-
 const ingredientServices = require('./ingredients.services')
 require('../middlewares/auth.middleware')(passport)
 
@@ -30,5 +29,10 @@ router.route('/:ingredient_id')
         adminMiddleware,
         ingredientServices.deleteIngredient
     )
+
+router.post('/:ingredient_id/add_to_user', 
+        passport.authenticate('jwt', {session: false}),
+        ingredientServices.postIngredientToUser
+)
 
 module.exports = router

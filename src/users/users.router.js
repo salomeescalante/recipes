@@ -5,7 +5,6 @@ const userServices = require('./users.services')
 
 require('../middlewares/auth.middleware')(passport)
 
-
 //? rutas raiz
 
 router.get('/', userServices.getAllUsers)
@@ -35,6 +34,8 @@ router.route('/me')
         userServices.deleteMyUser
     )
 
+//TODO Agregar la ruta para obtener mis recetas
+
 //? /api/v1/users/:id
 router.route('/:id')
     .get(userServices.getUserById)
@@ -48,9 +49,5 @@ router.route('/:id')
         adminValidate,
         userServices.deleteUser
     )
-
-
-
-
 
 module.exports = router
